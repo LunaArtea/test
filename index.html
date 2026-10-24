@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestión de mesas y lista de espera</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">The Palace Company · Design Challenge</p>
+          <h1>Gestión de sala y lista de espera</h1>
+          <p class="hero__copy">
+            Una propuesta para que recepción decida rápido dónde sentar a cada
+            grupo sin comprometer reservas próximas.
+          </p>
+        </div>
+        <div class="service-card" aria-label="Resumen del servicio">
+          <span class="service-card__label">Servicio cena</span>
+          <strong>19:42</strong>
+          <small>42 / 60 cubiertos activos</small>
+        </div>
+      </header>
+
+      <section class="strategy">
+        <article>
+          <span class="strategy__number">01</span>
+          <h2>Prioridad operativa</h2>
+          <p>
+            Evitar errores de asignación: una mesa libre no siempre está
+            disponible si existe una reserva cercana con el mismo tamaño.
+          </p>
+        </article>
+        <article>
+          <span class="strategy__number">02</span>
+          <h2>Lectura en segundos</h2>
+          <p>
+            Colores, estados y avisos muestran qué ocurre ahora, qué está por
+            ocurrir y qué necesita una acción inmediata.
+          </p>
+        </article>
+        <article>
+          <span class="strategy__number">03</span>
+          <h2>Acción contextual</h2>
+          <p>
+            Al seleccionar una mesa o cliente, el sistema sugiere la decisión
+            más segura y permite actualizar estados sin cambiar de pantalla.
+          </p>
+        </article>
+      </section>
+
+      <section class="tablet" aria-label="Pantalla principal de la herramienta">
+        <div class="tablet__topbar">
+          <div>
+            <p>Recepción</p>
+            <h2>Estado de sala</h2>
+          </div>
+          <div class="shift-metrics" aria-label="Métricas rápidas">
+            <span><strong>8</strong> mesas libres</span>
+            <span><strong>5</strong> esperando</span>
+            <span><strong>3</strong> reservas próximas</span>
+          </div>
+        </div>
+
+        <div class="dashboard">
+          <section class="floor-plan card" aria-labelledby="floor-title">
+            <div class="section-heading">
+              <div>
+                <p>Plano</p>
+                <h3 id="floor-title">Sala principal</h3>
+              </div>
+              <div class="legend" aria-label="Leyenda de estados">
+                <span><i class="dot dot--free"></i>Libre</span>
+                <span><i class="dot dot--busy"></i>Ocupada</span>
+                <span><i class="dot dot--soon"></i>Reservada</span>
+                <span><i class="dot dot--cleaning"></i>Preparar</span>
+              </div>
+            </div>
+
+            <div class="floor-grid" id="floorGrid">
+              <button class="table table--busy" data-table="M1">
+                <span>M1</span><strong>4</strong><small>Postres · 12 min</small>
+              </button>
+              <button class="table table--free is-selected" data-table="M2">
+                <span>M2</span><strong>2</strong><small>Libre · 0 min</small>
+              </button>
+              <button class="table table--soon" data-table="M3">
+                <span>M3</span><strong>4</strong><small>Reserva 20:00</small>
+              </button>
+              <button class="table table--cleaning" data-table="M4">
+                <span>M4</span><strong>6</strong><small>Preparar · 6 min</small>
+              </button>
+              <button class="table table--busy table--wide" data-table="M5">
+                <span>M5</span><strong>8</strong><small>Principal · 32 min</small>
+              </button>
+              <button class="table table--free" data-table="M6">
+                <span>M6</span><strong>4</strong><small>Libre · ventana 45 min</small>
+              </button>
+              <button class="table table--busy" data-table="M7">
+                <span>M7</span><strong>2</strong><small>Entrantes · 21 min</small>
+              </button>
+              <button class="table table--soon" data-table="M8">
+                <span>M8</span><strong>2</strong><small>Reserva 19:55</small>
+              </button>
+              <button class="table table--free" data-table="M9">
+                <span>M9</span><strong>6</strong><small>Libre · ideal walk-in</small>
+              </button>
+              <button class="table table--busy" data-table="M10">
+                <span>M10</span><strong>4</strong><small>Cuenta pedida</small>
+              </button>
+            </div>
+          </section>
+
+          <aside class="queue card" aria-labelledby="queue-title">
+            <div class="section-heading">
+              <div>
+                <p>Entrada</p>
+                <h3 id="queue-title">Llegadas y espera</h3>
+              </div>
+              <button class="ghost-button" type="button">+ Registrar</button>
+            </div>
+
+            <div class="tabs" role="tablist" aria-label="Lista de llegadas">
+              <button class="tab is-active" type="button">Espera</button>
+              <button class="tab" type="button">Reservas</button>
+            </div>
+
+            <div class="guest-list">
+              <article class="guest" data-guest="Rivas">
+                <div>
+                  <strong>Rivas</strong>
+                  <span>Walk-in · 4 pax · 18 min</span>
+                </div>
+                <em>15-20 min</em>
+              </article>
+              <article class="guest guest--selected" data-guest="Luna">
+                <div>
+                  <strong>Luna</strong>
+                  <span>Reserva 19:45 · 2 pax · llegó</span>
+                </div>
+                <em>mesa sugerida</em>
+              </article>
+              <article class="guest" data-guest="Nakamura">
+                <div>
+                  <strong>Nakamura</strong>
+                  <span>Walk-in · 6 pax · 9 min</span>
+                </div>
+                <em>20-25 min</em>
+              </article>
+              <article class="guest" data-guest="Ortiz">
+                <div>
+                  <strong>Ortiz</strong>
+                  <span>Reserva 20:00 · 4 pax · no llegó</span>
+                </div>
+                <em>proteger M3</em>
+              </article>
+            </div>
+
+            <div class="up-next">
+              <h4>Próximas reservas</h4>
+              <ol>
+                <li><span>19:55 · Vega · 2 pax</span><strong>M8</strong></li>
+                <li><span>20:00 · Ortiz · 4 pax</span><strong>M3</strong></li>
+                <li><span>20:15 · Martín · 6 pax</span><strong>por asignar</strong></li>
+              </ol>
+            </div>
+          </aside>
+
+          <section class="decision card" aria-labelledby="decision-title">
+            <div class="section-heading">
+              <div>
+                <p>Decisión</p>
+                <h3 id="decision-title">Mesa M2 · 2 pax</h3>
+              </div>
+              <span class="badge badge--safe" id="riskBadge">Uso seguro</span>
+            </div>
+
+            <div class="recommendation">
+              <span class="recommendation__icon">✓</span>
+              <div>
+                <strong>Recomendación</strong>
+                <p id="recommendationText">
+                  Asignar a Luna (2 pax). La mesa no afecta reservas próximas y
+                  reduce el tiempo de espera de una reserva ya llegada.
+                </p>
+              </div>
+            </div>
+
+            <div class="decision-grid">
+              <div>
+                <span class="field-label">Cliente seleccionado</span>
+                <strong id="selectedGuest">Luna · reserva 19:45</strong>
+              </div>
+              <div>
+                <span class="field-label">Estimación para walk-ins</span>
+                <strong id="waitEstimate">15-20 min</strong>
+              </div>
+              <div>
+                <span class="field-label">Siguiente reserva protegida</span>
+                <strong id="protectedReservation">M3 · Ortiz · 20:00</strong>
+              </div>
+            </div>
+
+            <div class="action-row">
+              <button class="primary-button" type="button">Asignar mesa</button>
+              <button class="secondary-button" type="button">Marcar llegada</button>
+              <button class="secondary-button" type="button">Actualizar estado</button>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
